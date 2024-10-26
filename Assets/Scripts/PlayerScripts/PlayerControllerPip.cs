@@ -94,4 +94,22 @@ public class PlayerControllerPip : MonoBehaviour
             transform.localScale = localScale;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Cobweb")
+        {
+            speed = speed / 3;
+            jumpingPower = jumpingPower / 2;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Cobweb")
+        {
+            speed = 8f;
+            jumpingPower = 13f;
+        }
+    }
 }
