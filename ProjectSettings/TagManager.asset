@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Cobweb
+  - Squeak
+  - Pip
   layers:
   - Default
   - TransparentFX

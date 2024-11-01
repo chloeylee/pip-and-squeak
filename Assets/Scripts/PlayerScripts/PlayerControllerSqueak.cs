@@ -18,10 +18,10 @@ public class PlayerControllerSqueak : MonoBehaviour
     [SerializeField] private float overheadCheckRadius = 0.2f;
 
     // Hardcoded input keys
-    private KeyCode moveLeftKey = KeyCode.LeftArrow;   // Left movement key
-    private KeyCode moveRightKey = KeyCode.RightArrow;  // Right movement key
-    private KeyCode jumpKey = KeyCode.UpArrow;       // Jump key
-    private KeyCode crouchKey = KeyCode.DownArrow;     // Crouch key
+    private KeyCode moveLeftKey = KeyCode.A;   // Left movement key
+    private KeyCode moveRightKey = KeyCode.D;  // Right movement key
+    private KeyCode jumpKey = KeyCode.W;       // Jump key
+    private KeyCode crouchKey = KeyCode.S;     // Crouch key
 
     private Animator animator;
 
