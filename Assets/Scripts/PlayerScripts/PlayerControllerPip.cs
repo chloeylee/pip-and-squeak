@@ -23,9 +23,13 @@ public class PlayerControllerPip : MonoBehaviour
     private KeyCode jumpKey = KeyCode.W;       // Jump key
     private KeyCode crouchKey = KeyCode.S;     // Crouch key
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
+
         crouchFlag = false;
         standingCollider.enabled = true;
         crouchingCollider.enabled = false;
@@ -39,22 +43,35 @@ public class PlayerControllerPip : MonoBehaviour
         if (Input.GetKey(moveLeftKey))
         {
             horizontal = -1f; // move left
+            animator.SetBool("isWalking", true);
         }
         if (Input.GetKey(moveRightKey))
         {
             horizontal = 1f; // move right
+            animator.SetBool("isWalking", true);
+        }
+        if (!Input.GetKey(moveLeftKey) && !Input.GetKey(moveRightKey))
+        {
+            horizontal = 0f; // stop moving
+            animator.SetBool("isWalking", false);
         }
 
         // Jumping logic
         if (Input.GetKey(jumpKey) && IsGrounded())
         {
+            animator.SetBool("isJumping", true);
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+        }
+        else
+        {
+            animator.SetBool("isJumping", false);
         }
 
         // Crouching logic
         if (Input.GetKeyDown(crouchKey) && !crouchFlag) // Start crouching
         {
             crouchFlag = true;
+            animator.SetBool("isCrouching", true);
         }
         else if (Input.GetKeyUp(crouchKey) && crouchFlag) // Stop crouching
         {
@@ -62,6 +79,7 @@ public class PlayerControllerPip : MonoBehaviour
             if (!Physics2D.OverlapCircle(overheadCheckCollider.position, overheadCheckRadius, groundLayer))
             {
                 crouchFlag = false;
+                animator.SetBool("isCrouching", false);
             }
         }
 
